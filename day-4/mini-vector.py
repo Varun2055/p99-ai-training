@@ -28,7 +28,7 @@ documents = [
 
 embeddings = np.array([get_embedding(doc) for doc in documents])
 
-dimension = embeddings.shape[1]  # embedding dimension (768 for Gemini)
+dimension = embeddings.shape[1]  
 print("Embedding shape:", embeddings.shape)
 
 index = faiss.IndexFlatL2(dimension)  # L2 = Euclidean distance
@@ -38,7 +38,7 @@ print("Vector store created with", index.ntotal, "documents.")
 
 
 
-def search(query, k=2):
+def search(query, k):
     query_vec = get_embedding(query).reshape(1, -1)
 
     distances, indices = index.search(query_vec, k)

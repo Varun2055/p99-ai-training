@@ -46,6 +46,10 @@ while True:
     except Exception:
         output = "No valid response text returned"
 
+    tokens = output.split()
+    if len(tokens) > 150:
+        output = " ".join(tokens[:100] + "...")
+
     print(f"Assistant: \n {response.text}\n duration: {duration}")
 
-    # history.append({"role": "model", "parts": output})
+    history.append({"role": "model", "parts": output})
